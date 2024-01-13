@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Simple BMI Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h2 class="head">BMI Calculator</h2>
+      </div>
+      <div class="box">
+        <div class="weightBox">
+          <h3 class="weight">20.0</h3>
+          <h2 class="bioWeight">normal weight</h2>
+        </div>
+        <form action="">
+          <div class="range">
+            <input
+              type="range"
+              min="20"
+              max="200"
+              value="0"
+              oninput="calculator()"
+              class="kilo"
+            />
+            <label for="" class="labelK"> 20 kg </label>
+          </div>
+          <div class="range">
+            <input
+              type="range"
+              min="100"
+              max="250"
+              value="100"
+              oninput="calculator()"
+              class="tall"
+            />
+            <label for="" class="labelT"> 100 cm </label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <h2 class="end">created by ~> <span>mohamed ayman</span></h2>
+
+    <script>
+      function calculator() {
+        let bmi;
+        let weight = document.querySelector(".weight");
+        let bioWeight = document.querySelector(".bioWeight");
+        let kilo = parseInt(document.querySelector(".kilo").value);
+        let tall = parseInt(document.querySelector(".tall").value);
+        let labelK = document.querySelector(".labelK");
+        let labelT = document.querySelector(".labelT");
+        labelK.textContent = kilo + " kg";
+        labelT.textContent = tall + " cm";
+        bmi = (kilo / Math.pow(tall / 100, 2)).toFixed(1);
+        weight.textContent = bmi;
+        if (bmi < 18.5) {
+          category = "Underweight 😒";
+          bioWeight.style.color = "#ffc44d";
+          document.querySelector(".end span").style.color = "#ffc44d";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          category = "Normal Weight 😍";
+          bioWeight.style.color = "#0be881";
+          document.querySelector(".end span").style.color = "#0be881";
+        } else if (bmi >= 25 && bmi <= 29.9) {
+          category = "Overweight 😮";
+          bioWeight.style.color = "#ff884d";
+          document.querySelector(".end span").style.color = "#ff884d";
+        } else {
+          category = "Obese 😱";
+          bioWeight.style.color = "#ff5e57";
+          document.querySelector(".end span").style.color = "#ff5e57";
+        }
+        bioWeight.textContent = category;
+      }
+    </script>
+  </body>
+</html>
